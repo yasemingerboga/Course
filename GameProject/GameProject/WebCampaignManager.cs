@@ -6,14 +6,19 @@ namespace GameProject
 {
     class WebCampaignManager : ICampaignService
     {
-        public int Discount()
+        public void Add()
         {
-            return 50;
+            Console.WriteLine("Campaign for website added.");
         }
 
-        public void Message()
+        public void Delete()
         {
-            Console.WriteLine("Campaign for website applied.");
+            Console.WriteLine("Campaign for website deleted.");
+        }
+
+        public void Update()
+        {
+            Console.WriteLine("Campaign for website updated.");
         }
     }
 }
