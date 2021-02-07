@@ -17,9 +17,9 @@ namespace GameProject
             GameManager gameManager = new GameManager(new UserValidationManager());
             gameManager.Add(gamer);
             ISalesService salesService = new MobileSalesManager(new SmsInvoiceManager(),new MobileCampaignManager());
-            salesService.Message();
+            salesService.Message("Update");
             ISalesService salesService1 = new WebSalesManager(new MailInvoiceManager(),new WebCampaignManager());
-            salesService1.Message();
+            salesService1.Message("Add");
         }
     }
 }

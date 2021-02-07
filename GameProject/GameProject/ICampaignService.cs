@@ -6,7 +6,8 @@ namespace GameProject
 {
     interface ICampaignService
     {
-        public void Message();
-        public int Discount();
+        public void Add();
+        public void Delete();
+        public void Update();
     }
 }

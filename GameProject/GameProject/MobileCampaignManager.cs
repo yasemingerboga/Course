@@ -6,14 +6,19 @@ namespace GameProject
 {
     class MobileCampaignManager : ICampaignService
     {
-        public int Discount()
+        public void Add()
         {
-            return 25;
+            Console.WriteLine("Campaign for mobile added.");
         }
 
-        public void Message()
+        public void Delete()
         {
-            Console.WriteLine("Campaign for mobile applied.");
+            Console.WriteLine("Campaign for mobile deleted.");
+        }
+
+        public void Update()
+        {
+            Console.WriteLine("Campaign for mobile updated.");
         }
     }
 }

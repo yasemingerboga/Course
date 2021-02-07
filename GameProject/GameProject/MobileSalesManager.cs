@@ -13,11 +13,22 @@ namespace GameProject
             this.invoice = invoice;
             this.campaignService = campaignService;
         }
-        public void Message()
+        public void Message(string message)
         {
             Console.WriteLine("The sale was made via mobile.");
             invoice.GetInvoice();
-            campaignService.Message();
+            if (message == "Add")
+            {
+                campaignService.Add();
+            }
+            else if (message == "Update")
+            {
+                campaignService.Update();
+            }
+            else if (message == "Delete")
+            {
+                campaignService.Delete();
+            }
         }
     }
 }

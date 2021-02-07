@@ -6,6 +6,6 @@ namespace GameProject
 {
     interface ISalesService
     {
-        public void Message();
+        public void Message(string messsage);
     }
 }
