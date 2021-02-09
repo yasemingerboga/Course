@@ -10,9 +10,16 @@ namespace DataAccess.Concrete
     public class InMemoryCarDal : ICarDal
     {
         List<Car> _cars;
-        public InMemoryCarDal(List<Car> cars)
+        public InMemoryCarDal()
         {
-            _cars = cars;
+            _cars = new List<Car>
+            {
+                new Car{ ID=1, BrandID=1, ColorID=1, DailyPrice=45, Description="Megane", ModelYear=2007},
+                new Car{ ID=2, BrandID=1, ColorID=2, DailyPrice=55, Description="Megane", ModelYear=2020},
+                new Car{ ID=3, BrandID=2, ColorID=2, DailyPrice=50, Description="Mini Cooper", ModelYear=2010},
+                new Car{ ID=4, BrandID=3, ColorID=3, DailyPrice=90, Description="Porsche ", ModelYear=2020},
+                new Car{ ID=5, BrandID=3, ColorID=4, DailyPrice=80, Description="Porsche ", ModelYear=2015},
+            };
         }
         public void Add(Car car)
         {
