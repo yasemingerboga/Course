@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Business.Concrete;
+using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete;
 using System;
@@ -19,33 +20,35 @@ namespace ConsoleUI
                 new Car{ ID=5, BrandID=3, ColorID=4, DailyPrice=80, Description="Porsche ", ModelYear=2015},
             };
             ICarDal carDal = new InMemoryCarDal(cars);
+            CarManager carManager = new CarManager(carDal);
+
             Console.WriteLine("Before: ");
-            foreach (var c in carDal.GetAll())
+            foreach (var c in carManager.GetAll())
             {
                 Console.WriteLine(c.ID + " " + c.Description + " Daily Price is: " + c.DailyPrice + "$");
             }
             Car car = new Car { ID = 6, BrandID = 3, ColorID = 1, DailyPrice = 120, Description = "Porsche", ModelYear = 2021 };
-            carDal.Add(car);
+            carManager.Add(car);
             Console.WriteLine("After adding process: ");
-            foreach (var c in carDal.GetAll())
+            foreach (var c in carManager.GetAll())
             {
                 Console.WriteLine(c.ID + " " + c.Description + " Daily Price is: " + c.DailyPrice + "$");
             }
             Car car1 = new Car { ID = 6, BrandID = 3, ColorID = 1, DailyPrice = 100, Description = "Porsche", ModelYear = 2021 };
-            carDal.Update(car1);
+            carManager.Update(car1);
             Console.WriteLine("After updating process: ");
-            foreach (var c in carDal.GetAll())
+            foreach (var c in carManager.GetAll())
             {
                 Console.WriteLine(c.ID + " " + c.Description + " Daily Price is: " + c.DailyPrice + "$");
             }
-            carDal.Delete(car1);
+            carManager.Delete(car1);
             Console.WriteLine("Car with ID number 6 is deleted. After deletion process: ");
-            foreach (var c in carDal.GetAll())
+            foreach (var c in carManager.GetAll())
             {
                 Console.WriteLine(c.ID + " " + c.Description + " Daily Price is: " + c.DailyPrice + "$");
             }
             Console.WriteLine("-----------------------------------------------");
-            Car car2 = carDal.GetByID(3);
+            Car car2 = carManager.GetByID(3);
             Console.WriteLine("(input ID = 3) Car with ID number : " + car2.ID + " " + car2.Description);
         }
     }
