@@ -1,6 +1,7 @@
 ﻿using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,43 @@ namespace ConsoleUI
     class Program
     {
         static void Main(string[] args)
+        {
+            InMemoryTest();
+            EntityFrameworkTest();
+        }
+
+        private static void EntityFrameworkTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            Console.WriteLine("Before: ");
+            foreach (var c in carManager.GetAll())
+            {
+                Console.WriteLine(c.Id + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+            }
+            Car car = new Car { BrandId = 3, ColorId = 1, DailyPrice = 120, Descriptions = "Porsche", ModelYear = 2021 };
+            carManager.Add(car);
+            Console.WriteLine("After adding process: ");
+            foreach (var c in carManager.GetAll())
+            {
+                Console.WriteLine(c.Id + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+            }
+            car.DailyPrice = 100;
+            carManager.Update(car);
+            Console.WriteLine("After updating process: ");
+            foreach (var c in carManager.GetAll())
+            {
+                Console.WriteLine(c.Id + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+            }
+            carManager.Delete(car);
+            Console.WriteLine("After deletion process: ");
+            foreach (var c in carManager.GetAll())
+            {
+                Console.WriteLine(c.Id + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+            }
+            Console.WriteLine("-----------------------------------------------");
+        }
+
+        private static void InMemoryTest()
         {
             CarManager carManager = new CarManager(new InMemoryCarDal());
             Console.WriteLine("Before: ");
