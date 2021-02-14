@@ -15,9 +15,13 @@ namespace ConsoleUI
             //InMemoryTest();
             //EntityFrameworkTest();
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.CarDetails())
+            var result = carManager.CarDetails();
+            if (result.Success)
             {
-                Console.WriteLine("ID: " + car.CarId + "Name: " + car.CarName + " Brand: " + car.BrandName + " Color: " + car.ColorName);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine("ID: " + car.CarId + "Name: " + car.CarName + " Brand: " + car.BrandName + " Color: " + car.ColorName);
+                }
             }
         }
 
@@ -25,29 +29,46 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EfCarDal());
             Console.WriteLine("Before: ");
-            foreach (var c in carManager.GetAll())
+            var result = carManager.GetAll();
+            if (result.Success)
             {
-                Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+                foreach (var c in result.Data)
+                {
+                    Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+                }
             }
+
             Car car = new Car { BrandId = 3, ColorId = 1, DailyPrice = 120, Descriptions = "Porsche", ModelYear = 2021 };
-            carManager.Add(car);
-            Console.WriteLine("After adding process: ");
-            foreach (var c in carManager.GetAll())
+            var result1 = carManager.Add(car);
+            result = carManager.GetAll();
+            if (result1.Success && result.Success)
             {
-                Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+                Console.WriteLine("After adding process: ");
+                foreach (var c in result.Data)
+                {
+                    Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+                }
             }
             car.DailyPrice = 100;
-            carManager.Update(car);
-            Console.WriteLine("After updating process: ");
-            foreach (var c in carManager.GetAll())
+            var result2 = carManager.Update(car);
+            result = carManager.GetAll();
+            if (result2.Success && result.Success)
             {
-                Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+                Console.WriteLine("After updating process: ");
+                foreach (var c in result.Data)
+                {
+                    Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+                }
             }
-            carManager.Delete(car);
-            Console.WriteLine("After deletion process: ");
-            foreach (var c in carManager.GetAll())
+            var result3 = carManager.Delete(car);
+            result = carManager.GetAll();
+            if (result3.Success && result.Success)
             {
-                Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+                Console.WriteLine("After deletion process: ");
+                foreach (var c in result.Data)
+                {
+                    Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+                }
             }
             Console.WriteLine("-----------------------------------------------");
         }
@@ -56,29 +77,45 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new InMemoryCarDal());
             Console.WriteLine("Before: ");
-            foreach (var c in carManager.GetAll())
+            var result = carManager.GetAll();
+            if (result.Success)
             {
-                Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+                foreach (var c in result.Data)
+                {
+                    Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+                }
             }
             Car car = new Car { CarId = 6, BrandId = 3, ColorId = 1, DailyPrice = 120, Descriptions = "Porsche", ModelYear = 2021 };
-            carManager.Add(car);
-            Console.WriteLine("After adding process: ");
-            foreach (var c in carManager.GetAll())
+            var result1 = carManager.Add(car);
+            result = carManager.GetAll();
+            if(result1.Success && result.Success)
             {
-                Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
-            }
+                Console.WriteLine("After adding process: ");
+                foreach (var c in result.Data)
+                {
+                    Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+                }
+            }     
             Car car1 = new Car { CarId = 6, BrandId = 3, ColorId = 1, DailyPrice = 100, Descriptions = "Porsche", ModelYear = 2021 };
-            carManager.Update(car1);
-            Console.WriteLine("After updating process: ");
-            foreach (var c in carManager.GetAll())
+            var result2 = carManager.Update(car1);
+            result = carManager.GetAll();
+            if (result1.Success && result.Success)
             {
-                Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+                Console.WriteLine("After updating process: ");
+                foreach (var c in result.Data)
+                {
+                    Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+                }
             }
-            carManager.Delete(car1);
-            Console.WriteLine("Car with ID number 6 is deleted. After deletion process: ");
-            foreach (var c in carManager.GetAll())
+            var result3 = carManager.Delete(car1);
+            result = carManager.GetAll();
+            if (result1.Success && result.Success)
             {
-                Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+                Console.WriteLine("Car with ID number 6 is deleted. After deletion process: ");
+                foreach (var c in result.Data)
+                {
+                    Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
+                }
             }
             Console.WriteLine("-----------------------------------------------");
             //Car car2 = carManager.GetById(3);
