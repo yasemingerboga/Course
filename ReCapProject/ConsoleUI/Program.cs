@@ -14,6 +14,36 @@ namespace ConsoleUI
         {
             //InMemoryTest();
             //EntityFrameworkTest();
+            //CarDetails();
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            CarManager carManager = new CarManager(new EfCarDal());
+            UserManager userManager = new UserManager(new EfUserDal());
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            //InsertDataToDatabase(rentalManager, userManager, customerManager);
+            var result = rentalManager.RentalDetails(r => r.ReturnDate != null);
+            foreach (var item in result.Data)
+            {
+                Console.WriteLine("Rent id: " + item.RentId + " Car: " + item.CarName +
+                    " Company Name : " + item.CompanyName + " Customer Name : " + item.CustomerName +
+                    " Customer Surname : " + item.CustomerSurname + " Rent Date : " + item.RentDate +
+                    " Return Date : " + item.ReturnDate);
+            }
+            rentalManager.Add(new Rental { CarId = 1, CustomerId = 1039, RentDate = DateTime.Now });    //add
+            rentalManager.Add(new Rental { CarId = 2, CustomerId = 1039, RentDate = DateTime.Now });    //not add
+        }
+
+        private static void InsertDataToDatabase(RentalManager rentalManager, UserManager userManager, CustomerManager customerManager)
+        {
+            userManager.Insert(new User { FirstName = "Yasemin", Email = "asd@gmail.com", LastName = "AAA", UserPassword = "123" });
+            userManager.Insert(new User { FirstName = "Onur", Email = "das@gmail.com", LastName = "BBB", UserPassword = "123" });
+            customerManager.Insert(new Customer { CompanyName = "Aselsan", UserId = 1032 });
+            customerManager.Insert(new Customer { CompanyName = "Havelsan", UserId = 1033 });
+            rentalManager.Add(new Rental { CarId = 4, CustomerId = 1029, RentDate = DateTime.Now, ReturnDate = null });
+            rentalManager.Add(new Rental { CarId = 5, CustomerId = 1030, RentDate = DateTime.Now, ReturnDate = DateTime.Now });
+        }
+
+        private static void CarDetails()
+        {
             CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.CarDetails();
             if (result.Success)
@@ -88,14 +118,14 @@ namespace ConsoleUI
             Car car = new Car { CarId = 6, BrandId = 3, ColorId = 1, DailyPrice = 120, Descriptions = "Porsche", ModelYear = 2021 };
             var result1 = carManager.Add(car);
             result = carManager.GetAll();
-            if(result1.Success && result.Success)
+            if (result1.Success && result.Success)
             {
                 Console.WriteLine("After adding process: ");
                 foreach (var c in result.Data)
                 {
                     Console.WriteLine(c.CarId + " " + c.Descriptions + " Daily Price is: " + c.DailyPrice + "$");
                 }
-            }     
+            }
             Car car1 = new Car { CarId = 6, BrandId = 3, ColorId = 1, DailyPrice = 100, Descriptions = "Porsche", ModelYear = 2021 };
             var result2 = carManager.Update(car1);
             result = carManager.GetAll();
