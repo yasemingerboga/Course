@@ -23,7 +23,7 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
-            var available = _rentalDal.GetRentalDetails(r => r.CarId == rental.CarId && r.ReturnDate != null);
+            var available = _rentalDal.GetRentalDetails(r => (r.CarId == rental.CarId && r.ReturnDate != null));
             if (available.Count == 0)
             {
                 Console.WriteLine("Car is not available.");
