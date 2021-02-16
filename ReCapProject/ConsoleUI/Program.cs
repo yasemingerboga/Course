@@ -20,7 +20,7 @@ namespace ConsoleUI
             UserManager userManager = new UserManager(new EfUserDal());
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
             //InsertDataToDatabase(rentalManager, userManager, customerManager);
-            var result = rentalManager.RentalDetails(r => r.ReturnDate != null);
+            var result = rentalManager.RentalDetails(r => r.ReturnDate != null);    //delivered cars, available cars
             foreach (var item in result.Data)
             {
                 Console.WriteLine("Rent id: " + item.RentId + " Car: " + item.CarName +
@@ -29,7 +29,7 @@ namespace ConsoleUI
                     " Return Date : " + item.ReturnDate);
             }
             rentalManager.Add(new Rental { CarId = 1, CustomerId = 1039, RentDate = DateTime.Now });    //add
-            rentalManager.Add(new Rental { CarId = 2, CustomerId = 1039, RentDate = DateTime.Now });    //not add
+            rentalManager.Add(new Rental { CarId = 2, CustomerId = 1039, RentDate = DateTime.Now });    //cannot add
         }
 
         private static void InsertDataToDatabase(RentalManager rentalManager, UserManager userManager, CustomerManager customerManager)
