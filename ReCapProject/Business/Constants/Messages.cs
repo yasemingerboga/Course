@@ -33,10 +33,14 @@ namespace Business.Constants
         public static string RentalDetails = "Rental details listed.";
         public static string NotAvailable = "Car is not available.";
 
-        public static string CarGetById = "Car Brought in with id number.";
-        public static string CustomerGetById = "Customer Brought in with id number.";
-        public static string UserGetById = "User Brought in with id number.";
-        public static string RentalGetById = "Rental Brought in with id number.";
-        public static string BrandGetById = "Brand Brought in with id number.";
+        public static string CarGetById = "Car brought in with id number.";
+        public static string CustomerGetById = "Customer brought in with id number.";
+        public static string UserGetById = "User brought in with id number.";
+        public static string RentalGetById = "Rental brought in with id number.";
+        public static string BrandGetById = "Brand brought in with id number.";
+
+        public static string GetCarDetails = "Car details brought.";
+        public static string CarGetColorId = "Car details brought by color id.";
+        public static string CarGetBrandId = "Car details brought by brand id.";
     }
 }
