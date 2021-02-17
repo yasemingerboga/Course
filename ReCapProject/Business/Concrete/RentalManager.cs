@@ -44,6 +44,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(),Messages.RentalListed);
         }
 
+        public IDataResult<Rental> GetById(int id)
+        {
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r=>r.Id==id), Messages.RentalGetById);
+        }
+
         public IDataResult<List<RentalDetailDto>> RentalDetails(Expression<Func<Rental, bool>> filter = null)
         {
             return filter == null 
@@ -54,7 +59,7 @@ namespace Business.Concrete
 
         public IResult Update(Rental rental)
         {
-            _rentalDal.Delete(rental);
+            _rentalDal.Update(rental);
             return new SuccessResult(Messages.RentalUpdated);
         }
     }
