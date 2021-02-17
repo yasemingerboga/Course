@@ -66,7 +66,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  CarId = ca.CarId,
                                  CarName = ca.Name,
                                  ColorName = co.Name,
-                                 DailyPrice = ca.DailyPrice
+                                 DailyPrice = ca.DailyPrice,
+                                 AvailableStatus = ca.AvailableStatus
                              };
                 return result.ToList();
 
