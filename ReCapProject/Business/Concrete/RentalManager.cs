@@ -15,27 +15,35 @@ namespace Business.Concrete
     public class RentalManager : IRentalService
     {
         IRentalDal _rentalDal;
+        ICarDal _carDal;
 
-        public RentalManager(IRentalDal rentalDal)
+        public RentalManager(IRentalDal rentalDal, ICarDal carDal)
         {
             _rentalDal = rentalDal;
+            _carDal = carDal;
         }
 
         public IResult Add(Rental rental)
         {
-            var available = _rentalDal.GetRentalDetails(r => (r.CarId == rental.CarId && r.ReturnDate != null));
-            if (available.Count == 0)
+            //var available = _rentalDal.GetRentalDetails(r => ((r.CarId == rental.CarId) && ((r.ReturnDate != null)|| (r.ReturnDate == null && r.RentDate == null))));
+            var availableForDeleteMethod = _carDal.Get(r => (r.CarId == rental.CarId));
+            if ( availableForDeleteMethod.AvailableStatus==0)
             {
                 Console.WriteLine("Car is not available.");
                 return new ErrorResult(Messages.NotAvailable);
             }
             _rentalDal.Add(rental);
+            availableForDeleteMethod.AvailableStatus = 0;
+            _carDal.Update(availableForDeleteMethod);
             return new SuccessResult(Messages.RentalAdded);
         }
 
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
+            var result = _carDal.Get(c => c.CarId == rental.CarId);
+            result.AvailableStatus = 1;
+            _carDal.Update(result);
             return new SuccessResult(Messages.RentalDeleted);
         }
 
