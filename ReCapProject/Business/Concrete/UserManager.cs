@@ -32,7 +32,7 @@ namespace Business.Concrete
 
         public IDataResult<User> GetUserById(int userId)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId));
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId),Messages.UserGetById);
         }
 
         public IResult Insert(User user)
