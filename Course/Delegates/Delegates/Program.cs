@@ -24,6 +24,7 @@ namespace Delegates
             Matematik matematik = new Matematik();
             MyDelegate3 myDelegate3 = matematik.Topla;
             var sonuc = myDelegate3(2, 3);
+            myDelegate3 = matematik.Carp;
             Console.WriteLine(sonuc);
         }
         public class CustomerManager
@@ -50,7 +51,7 @@ namespace Delegates
             {
                 return sayi1 + sayi2;
             }
-            public int Çarp(int sayi1, int sayi2)
+            public int Carp(int sayi1, int sayi2)
             {
                 return sayi1 * sayi2;
             }
