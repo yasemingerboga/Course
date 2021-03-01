@@ -23,7 +23,7 @@ namespace Events
 
         private static void Phone_StockControlEvent()
         {
-            Console.WriteLine("Phone about to finish!");
+            Console.WriteLine("Phone about to finish!"); 
         }
     }
 }
