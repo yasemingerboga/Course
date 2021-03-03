@@ -34,7 +34,7 @@ namespace Business.Concrete
 
         public IDataResult<User> GetUserById(int userId)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId),Messages.UserGetById);
+            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == userId),Messages.UserGetById);
         }
 
         [ValidationAspect(typeof(UserValidator))]

@@ -67,10 +67,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  CarName = ca.Name,
                                  ColorName = co.Name,
                                  DailyPrice = ca.DailyPrice,
-                                 AvailableStatus = ca.AvailableStatus
                              };
                 return result.ToList();
-
             }
         }
 
