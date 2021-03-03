@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Results;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -23,18 +25,10 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            //var available = _rentalDal.GetRentalDetails(r => ((r.CarId == rental.CarId) && ((r.ReturnDate != null)|| (r.ReturnDate == null && r.RentDate == null))));
-            var availableForDeleteMethod = _carDal.Get(r => (r.CarId == rental.CarId));
-            if ( availableForDeleteMethod.AvailableStatus==0)
-            {
-                Console.WriteLine("Car is not available.");
-                return new ErrorResult(Messages.NotAvailable);
-            }
             _rentalDal.Add(rental);
-            availableForDeleteMethod.AvailableStatus = 0;
-            _carDal.Update(availableForDeleteMethod);
             return new SuccessResult(Messages.RentalAdded);
         }
 
