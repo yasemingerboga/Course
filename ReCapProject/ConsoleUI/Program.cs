@@ -34,10 +34,10 @@ namespace ConsoleUI
 
         private static void InsertDataToDatabase(RentalManager rentalManager, UserManager userManager, CustomerManager customerManager)
         {
-            userManager.Insert(new User { FirstName = "Yasemin", Email = "asd@gmail.com", LastName = "AAA", UserPassword = "123" });
-            userManager.Insert(new User { FirstName = "Onur", Email = "das@gmail.com", LastName = "BBB", UserPassword = "123" });
-            customerManager.Insert(new Customer { CompanyName = "Aselsan", UserId = 1032 });
-            customerManager.Insert(new Customer { CompanyName = "Havelsan", UserId = 1033 });
+            userManager.Add(new User { FirstName = "Yasemin", Email = "asd@gmail.com", LastName = "AAA", UserPassword = "123" });
+            userManager.Add(new User { FirstName = "Onur", Email = "das@gmail.com", LastName = "BBB", UserPassword = "123" });
+            customerManager.Add(new Customer { CompanyName = "Aselsan", UserId = 1032 });
+            customerManager.Add(new Customer { CompanyName = "Havelsan", UserId = 1033 });
             rentalManager.Add(new Rental { CarId = 4, CustomerId = 1029, RentDate = DateTime.Now, ReturnDate = null });
             rentalManager.Add(new Rental { CarId = 5, CustomerId = 1030, RentDate = DateTime.Now, ReturnDate = DateTime.Now });
         }
