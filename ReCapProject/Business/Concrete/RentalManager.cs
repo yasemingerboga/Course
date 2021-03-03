@@ -17,12 +17,10 @@ namespace Business.Concrete
     public class RentalManager : IRentalService
     {
         IRentalDal _rentalDal;
-        ICarDal _carDal;
 
-        public RentalManager(IRentalDal rentalDal, ICarDal carDal)
+        public RentalManager(IRentalDal rentalDal)
         {
             _rentalDal = rentalDal;
-            _carDal = carDal;
         }
 
         [ValidationAspect(typeof(RentalValidator))]
@@ -35,9 +33,6 @@ namespace Business.Concrete
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
-            var result = _carDal.Get(c => c.CarId == rental.CarId);
-            result.AvailableStatus = 1;
-            _carDal.Update(result);
             return new SuccessResult(Messages.RentalDeleted);
         }
 
@@ -48,7 +43,7 @@ namespace Business.Concrete
 
         public IDataResult<Rental> GetById(int id)
         {
-            return new SuccessDataResult<Rental>(_rentalDal.Get(r=>r.Id==id), Messages.RentalGetById);
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r=>r.RentalId==id), Messages.RentalGetById);
         }
 
         public IDataResult<List<RentalDetailDto>> RentalDetails(Expression<Func<Rental, bool>> filter = null)
