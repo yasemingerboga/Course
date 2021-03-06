@@ -13,44 +13,6 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, ReCapProjectDatabaseContext>,IRentalDal
     {
-        public void Add(Rental entity)
-        {
-            using (ReCapProjectDatabaseContext context = new ReCapProjectDatabaseContext())
-            {
-                var addedEntity = context.Entry(entity);
-                addedEntity.State = EntityState.Added;
-                context.SaveChanges();
-            }
-        }
-
-        public void Delete(Rental entity)
-        {
-            using (ReCapProjectDatabaseContext context = new ReCapProjectDatabaseContext())
-            {
-                var deletedEntity = context.Entry(entity);
-                deletedEntity.State = EntityState.Deleted;
-                context.SaveChanges();
-            }
-        }
-
-        public Rental Get(Expression<Func<Rental, bool>> filter)
-        {
-            using (ReCapProjectDatabaseContext context = new ReCapProjectDatabaseContext())
-            {
-                return context.Set<Rental>().SingleOrDefault(filter);
-            }
-        }
-
-        public List<Rental> GetAll(Expression<Func<Rental, bool>> filter = null)
-        {
-            using (ReCapProjectDatabaseContext context = new ReCapProjectDatabaseContext())
-            {
-                return filter == null
-                     ? context.Set<Rental>().ToList()
-                     : context.Set<Rental>().Where(filter).ToList();
-            }
-        }
-
         public List<RentalDetailDto> GetRentalDetails(Expression<Func<Rental, bool>> filter = null)
         {
             using (ReCapProjectDatabaseContext context = new ReCapProjectDatabaseContext())
@@ -70,16 +32,6 @@ namespace DataAccess.Concrete.EntityFramework
                                  ReturnDate = (DateTime)r.ReturnDate
                              };
                 return result.ToList();
-            }
-        }
-
-        public void Update(Rental entity)
-        {
-            using (ReCapProjectDatabaseContext context = new ReCapProjectDatabaseContext())
-            {
-                var updatedEntity = context.Entry(entity);
-                updatedEntity.State = EntityState.Modified;
-                context.SaveChanges();
             }
         }
     }

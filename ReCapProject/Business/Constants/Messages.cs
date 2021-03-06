@@ -12,6 +12,7 @@ namespace Business.Constants
         public static string RentalAdded = "Rental added.";
         public static string BrandAdded = "Brand added.";
         public static string ColorAdded = "Color added.";
+        public static string CarImageAdded = "Car image added.";
 
         public static string CarDeleted = "Car deleted.";
         public static string CustomerDeleted = "Customer deleted.";
@@ -19,6 +20,7 @@ namespace Business.Constants
         public static string RentalDeleted = "Rental deleted.";
         public static string BrandDeleted = "Brand deleted.";
         public static string ColorDeleted = "Color deleted.";
+        public static string CarImageDeleted = "Car image deleted.";
 
         public static string CarUpdated = "Car updated.";
         public static string CustomerUpdated = "Customer updated.";
@@ -26,6 +28,7 @@ namespace Business.Constants
         public static string RentalUpdated = "Rental updated.";
         public static string BrandUpdated = "Brand updated.";
         public static string ColorUpdated = "Color updated.";
+        public static string CarImageUpdated = "Car image updated.";
 
         public static string CarListed = "Cars listed.";
         public static string CustomerListed = "Customers listed.";
@@ -33,6 +36,7 @@ namespace Business.Constants
         public static string RentalListed = "Rentals listed.";
         public static string BrandListed = "Brands listed.";
         public static string ColorListed = "Colors listed.";
+        public static string CarImageListed = "Car image listed.";
 
         public static string RentalDetails = "Rental details listed.";
         public static string NotAvailable = "Car is not available.";
@@ -47,5 +51,6 @@ namespace Business.Constants
         public static string GetCarDetails = "Car details brought.";
         public static string CarGetColorId = "Car details brought by color id.";
         public static string CarGetBrandId = "Car details brought by brand id.";
+        public static string CarImageCountError = "There are already 5 photos.";
     }
 }
