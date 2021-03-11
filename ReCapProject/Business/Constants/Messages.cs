@@ -43,7 +43,7 @@ namespace Business.Constants
 
         public static string CarGetById = "Car brought in with id number.";
         public static string CustomerGetById = "Customer brought in with id number.";
-        public static string UserGetById = "User brought in with id number.";
+        public static string UserGetByMail = "User brought in by mail.";
         public static string RentalGetById = "Rental brought in with id number.";
         public static string BrandGetById = "Brand brought in with id number.";
         public static string ColorGetById = "Color brought in with id number.";
@@ -52,5 +52,13 @@ namespace Business.Constants
         public static string CarGetColorId = "Car details brought by color id.";
         public static string CarGetBrandId = "Car details brought by brand id.";
         public static string CarImageCountError = "There are already 5 photos.";
+        public static string AuthorizationDenied = "Authorization denied.";
+        public static string UserRegistered = "User registered.";
+        public static string UserNotFound = "User not founr.";
+        public static string PasswordError = "Password Error";
+        public static string SuccessfulLogin = "Successful login";
+        public static string UserAlreadyExists = "User already exists.";
+        public static string AccessTokenCreated = "Access token created";
+        public static string UserClaimsListed = "User claims listed.";
     }
 }
