@@ -32,7 +32,7 @@ namespace ConsoleUI
             rentalManager.Add(new Rental { CarId = 2, CustomerId = 1039, RentDate = DateTime.Now });    //cannot add
         }
 
-        private static void InsertDataToDatabase(RentalManager rentalManager, UserManager userManager, CustomerManager customerManager)
+        /*private static void InsertDataToDatabase(RentalManager rentalManager, UserManager userManager, CustomerManager customerManager)
         {
             userManager.Add(new User { FirstName = "Yasemin", Email = "asd@gmail.com", LastName = "AAA", UserPassword = "123" });
             userManager.Add(new User { FirstName = "Onur", Email = "das@gmail.com", LastName = "BBB", UserPassword = "123" });
@@ -40,7 +40,7 @@ namespace ConsoleUI
             customerManager.Add(new Customer { CompanyName = "Havelsan", UserId = 1033 });
             rentalManager.Add(new Rental { CarId = 4, CustomerId = 1029, RentDate = DateTime.Now, ReturnDate = null });
             rentalManager.Add(new Rental { CarId = 5, CustomerId = 1030, RentDate = DateTime.Now, ReturnDate = DateTime.Now });
-        }
+        }*/
 
         private static void CarDetails()
         {
