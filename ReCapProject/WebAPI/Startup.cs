@@ -49,8 +49,8 @@ namespace WebAPI
             services.AddSingleton<IRentalService, RentalManager>();
             services.AddSingleton<IRentalDal, EfRentalDal>();
             services.AddSingleton<IUserService, UserManager>();
-            services.AddSingleton<IUserDal, EfUserDal>();*/
-            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IUserDal, EfUserDal>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();*/
 
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
