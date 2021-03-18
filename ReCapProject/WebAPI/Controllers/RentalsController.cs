@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpGet("rentaldetails")]
-        public IActionResult RentalDetails()
+        public IActionResult RentalDetails() 
         {
             var result = _rentalService.RentalDetails();
             if (result.Success)
@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
-        }
+        } 
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
