@@ -54,7 +54,7 @@ namespace DataAccess.Concrete
             return _cars.SingleOrDefault(c => c.CarId == id);
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public List<CarDetailDto> GetCarDetails(Expression<Func<CarDetailDto, bool>> filter = null)
         {
             throw new NotImplementedException();
         }
