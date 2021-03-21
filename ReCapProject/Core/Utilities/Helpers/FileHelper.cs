@@ -15,14 +15,16 @@ namespace Core.Utilities.Helpers
         {
             if (file.Length > 0)
             {
-                var newGuidPath = "\\" + Guid.NewGuid().ToString("N") + Path.GetExtension(path + file.FileName);
-                using (FileStream fileStream = System.IO.File.Create(path + newGuidPath))
+                string filePath = NewPath(file).newPath;
+                string imagePath = NewPath(file).Path2;
+                string fullPath = filePath +"\\" +imagePath;
+                imagePath = "\\Images\\" + imagePath;
+                using (FileStream fileStream = System.IO.File.Create(fullPath))
                 {
                     file.CopyTo(fileStream);
                     fileStream.Flush();
                 }
-                String filePath = path + newGuidPath;
-                return new SuccessDataResult<String>(filePath, "File Added.");
+                return new SuccessDataResult<String>(imagePath, "File Added.");
             }
             return new ErrorDataResult<String>();
         }
@@ -32,14 +34,16 @@ namespace Core.Utilities.Helpers
             if (File.Exists(oldfilepath))
             {
                 FileHelper.DeleteAsync(oldfilepath);
-                var newGuidPath = "\\" + Guid.NewGuid().ToString("N") + Path.GetExtension(path + newfile.FileName);
-                using (FileStream fileStream = System.IO.File.Create(path + newGuidPath))
+                string filePath = NewPath(newfile).newPath;
+                string imagePath = NewPath(newfile).Path2;
+                string fullPath = filePath + "\\" + imagePath;
+                imagePath = "\\Images\\" + imagePath;
+                using (FileStream fileStream = System.IO.File.Create(fullPath))
                 {
                     newfile.CopyTo(fileStream);
                     fileStream.Flush();
                 }
-                string newfilePath = path + "\\" + newGuidPath;
-                return new SuccessDataResult<String>(newfilePath, "File Added");
+                return new SuccessDataResult<String>(imagePath, "File Added");
             }
             return new ErrorDataResult<String>("File Doesn't Exists");
 
@@ -57,6 +61,23 @@ namespace Core.Utilities.Helpers
             }
 
             return new SuccessResult();
+        }
+        public static (string newPath, string Path2) NewPath(IFormFile file)
+        {
+            FileInfo ff = new FileInfo(file.FileName);
+            string fileExtension = ff.Extension;
+
+            var creatingUniqueFilename = Guid.NewGuid().ToString("N")
+               + "_" + DateTime.Now.Month + "_"
+               + DateTime.Now.Day + "_"
+               + DateTime.Now.Year + fileExtension;
+
+
+            string path = Environment.CurrentDirectory + @"\wwwroot\Images";
+
+            string result = $@"{path}\{creatingUniqueFilename}";
+
+            return (path, $"{creatingUniqueFilename}");
         }
     }
 }
