@@ -20,5 +20,6 @@ namespace Business.Abstract
         IDataResult<List<CarDetailDto>> GetCarsByColorId(int id);
         IDataResult<List<CarDetailDto>> CarDetails(Expression<Func<CarDetailDto, bool>> filter = null) ;
         IResult AddTransactionTest(Car car);
+        IDataResult<List<CarDetailDto>> GetCarsByFilter(int colorId, int brandId);
     }
 }
