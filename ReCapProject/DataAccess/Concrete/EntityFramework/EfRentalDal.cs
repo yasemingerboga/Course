@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess.EntityFramework;
+using Core.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework.Context;
 using Entities.Concrete;
@@ -14,6 +15,16 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, ReCapProjectDatabaseContext>,IRentalDal
     {
+        public IResult CheckAvailability(DateTime rentDate, int carId)
+        {
+            List<RentalDetailDto> rentals = GetRentalDetails(c=>c.ReturnDate >= rentDate && c.CarId==carId);
+            if (rentals.Count == 0)
+            {
+                return new SuccessResult();
+            }
+            return new ErrorResult();
+        }
+
         public List<RentalDetailDto> GetRentalDetails(Expression<Func<Rental, bool>> filter = null)
         {
             using (ReCapProjectDatabaseContext context = new ReCapProjectDatabaseContext())

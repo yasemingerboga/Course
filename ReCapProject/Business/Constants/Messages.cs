@@ -62,5 +62,9 @@ namespace Business.Constants
         public static string UserClaimsListed = "User claims listed.";
 
         public static string RentalGetByCarId = "Rentals get by carId";
+
+        public static string CarIsAvailable = "Car is available";
+        public static string CarIsNotAvailable = "Car is not available";
+        public static string CardAdded = "Card added";
     }
 }
