@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess;
+using Core.Results;
 using Entities.Concrete;
 using Entities.DTO;
 using System;
@@ -11,5 +12,6 @@ namespace DataAccess.Abstract
     public interface IRentalDal : IEntityRepository<Rental>
     {
         List<RentalDetailDto> GetRentalDetails(Expression<Func<Rental, bool>> filter=null);
+        IResult CheckAvailability(DateTime rentDate, int carId);
     }
 }
