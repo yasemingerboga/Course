@@ -73,5 +73,18 @@ namespace Business.Concrete
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.RentalUpdated);
         }
+
+        public IResult CheckAvailability(DateTime rentDate, int carId)
+        {
+           bool flag= _rentalDal.CheckAvailability(rentDate, carId).Success;
+            if (flag)
+            {
+                return new SuccessResult();
+            }
+            else
+            {
+                return new ErrorResult();
+            }
+        }
     }
 }
