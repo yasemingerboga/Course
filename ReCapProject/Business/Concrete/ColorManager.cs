@@ -38,10 +38,15 @@ namespace Business.Concrete
         [ValidationAspect(typeof(ColorValidator))]
         public IResult Add(Color color)
         {
+            if (_colorDal.GetAll(c => c.Name.ToLower() == color.Name.ToLower()).Count > 0)
+            {
+                return new ErrorResult(Messages.ColorCannotAdded);
+            }
             _colorDal.Add(color);
             return new SuccessResult(Messages.ColorAdded);
         }
 
+        [ValidationAspect(typeof(ColorValidator))]
         public IResult Update(Color color)
         {
             _colorDal.Update(color);

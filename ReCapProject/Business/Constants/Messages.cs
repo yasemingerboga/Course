@@ -66,5 +66,9 @@ namespace Business.Constants
         public static string CarIsAvailable = "Car is available";
         public static string CarIsNotAvailable = "Car is not available";
         public static string CardAdded = "Card added";
+
+        public static string BrandCannotAdded = "Brand cannot added.";
+
+        public static string ColorCannotAdded = "Color cannot added.";
     }
 }
