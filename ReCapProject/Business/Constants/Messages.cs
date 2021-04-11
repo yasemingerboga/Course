@@ -65,10 +65,18 @@ namespace Business.Constants
 
         public static string CarIsAvailable = "Car is available";
         public static string CarIsNotAvailable = "Car is not available";
-        public static string CardAdded = "Card added";
+        //public static string CardAdded = "Card added";
 
         public static string BrandCannotAdded = "Brand cannot added.";
 
         public static string ColorCannotAdded = "Color cannot added.";
+        public static string CreditCardAdded = "Credit Card added";
+        public static string CreditCardDeleted = "Credit Card deleted";
+        public static string CreditCardUpdated = "Credit Card updated";
+        public static string GetCreditCardByUserId = "Credit card details brought.";
+        public static string UserInformationAdded = "User informations added";
+        public static string UserInformationDeleted = "User informations deleted";
+        public static string UserInformationUpdated = "User informations updated";
+        public static string GetUserInformationByUserId = "User informations brought.";
     }
 }
