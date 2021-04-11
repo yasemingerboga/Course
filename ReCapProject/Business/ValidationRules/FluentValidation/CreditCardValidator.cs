@@ -6,19 +6,18 @@ using System.Text;
 
 namespace Business.ValidationRules.FluentValidation
 {
-    public class CardValidator : AbstractValidator<Card>
+    public class CreditCardValidator : AbstractValidator<CreditCard>
     {
-        public CardValidator()
+        public CreditCardValidator()
         {
-            RuleFor(c => c.CardFullName).NotEmpty();
-            RuleFor(c => c.CardNumber).NotEmpty();
+            RuleFor(c => c.CreditCardNumber).NotEmpty();
             RuleFor(c => c.Cvc).NotEmpty();
             RuleFor(c => c.ExpirationMonth).NotEmpty();
             RuleFor(c => c.ExpirationYear).NotEmpty();
+            RuleFor(c => c.NameOnTheCard).NotEmpty();
             RuleFor(c => c.ExpirationMonth).LessThanOrEqualTo("12");
             RuleFor(c => c.ExpirationMonth).GreaterThan("0");
-            RuleFor(c => c.ExpirationYear).GreaterThan(DateTime.Now.Year.ToString());
-
+            RuleFor(c => c.ExpirationYear).GreaterThanOrEqualTo(DateTime.Now.Year.ToString());
         }
     }
 }

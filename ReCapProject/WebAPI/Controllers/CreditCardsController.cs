@@ -11,17 +11,29 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CardsController : ControllerBase
+    public class CreditCardsController : ControllerBase
     {
-        ICardService _cardService;
-        public CardsController(ICardService cardService)
+        ICreditCardService _creditCardService;
+
+        public CreditCardsController(ICreditCardService creditCardService)
         {
-            _cardService = cardService;
+            _creditCardService = creditCardService;
+        }
+
+        [HttpGet("getbyuserid")]
+        public IActionResult GetByUserId(int userId)
+        {
+            var result = _creditCardService.GetByUserId(userId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
         [HttpPost("add")]
-        public IActionResult Add(Card card)
+        public IActionResult Add(CreditCard creditCard)
         {
-            var result = _cardService.Add(card);
+            var result = _creditCardService.Add(creditCard);
             if (result.Success)
             {
                 return Ok(result);
@@ -29,9 +41,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("delete")]
-        public IActionResult Delete(Card card)
+        public IActionResult Delete(CreditCard creditCard)
         {
-            var result = _cardService.Delete(card);
+            var result = _creditCardService.Delete(creditCard);
             if (result.Success)
             {
                 return Ok(result);
@@ -39,19 +51,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("update")]
-        public IActionResult Update(Card card)
+        public IActionResult Update(CreditCard creditCard)
         {
-            var result = _cardService.Update(card);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-        [HttpGet("check")]
-        public IActionResult Check(string cardNumber)
-        {
-            var result = _cardService.Check(cardNumber);
+            var result = _creditCardService.Update(creditCard);
             if (result.Success)
             {
                 return Ok(result);
